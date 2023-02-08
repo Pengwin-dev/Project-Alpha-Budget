@@ -9,9 +9,9 @@ namespace AlphaProjectBudgetApp.Repository
 {
     public class ProgramRepository : IProgramRepository
     {
-        List<Models.AlphaProjectBudgetApp> programs = new List<Models.AlphaProjectBudgetApp>();
+        List<Models.Programm> programs = new List<Models.Programm>();
 
-        public void AddProgram(Models.AlphaProjectBudgetApp program)
+        public void AddProgram(Models.Programm program)
         {
             programs.Add(program);
         }
