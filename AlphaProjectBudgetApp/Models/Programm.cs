@@ -9,6 +9,8 @@ namespace AlphaProjectBudgetApp.Models
     public class Programm
     {
         public string Code { get; set; }
+
+        public string Name { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
@@ -18,6 +20,13 @@ namespace AlphaProjectBudgetApp.Models
         //    this.StartDate = startDate;
         //    this.EndDate = endDate;
         //}
+        public Programm(string code, string name, DateTime startDate, DateTime endDate)
+        {
+            this.Code = code;
+            this.Name = name;
+            this.StartDate = startDate;
+            this.EndDate = endDate;
+        }
         public Programm(string code, DateTime startDate, DateTime endDate)
         {
             this.Code = code;

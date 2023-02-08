@@ -1,4 +1,5 @@
-﻿using AlphaProjectBudgetApp.Models;
+﻿using AlphaProjectBudgetApp.Controllers;
+using AlphaProjectBudgetApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,15 +9,29 @@ using System.Threading.Tasks;
 
 namespace AlphaProjectBudgetApp.Views
 {
-    public class Menu : IRegisterMenu
+    public class Menu
     {
-        public Menu() { }
-
-        
-       
-        public bool Register(Programm programToRegister)
+        public void Show()
         {
-            throw new NotImplementedException();
+            
+            Console.WriteLine("Welcome to the Budget App");
+            Console.WriteLine("1. Register a new Program");
+
+            var input = Console.ReadLine();
+
+            switch (input)
+            {
+                case "1":
+                    ProgramRegistration UIProgramRegistration = new ProgramRegistration();
+                    Programm program = UIProgramRegistration.Show();
+                    ProgramController programController = new ProgramController();
+                    programController.RegisterProgram(program);
+                    break;
+                default:
+                    Console.WriteLine("Invalid input");
+                    break;
+            }
         }
+        
     }
 }
