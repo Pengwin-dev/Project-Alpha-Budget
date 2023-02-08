@@ -9,8 +9,9 @@ namespace AlphaProjectBudgetApp.Views
 {
     public class ProgramRegistration
     {
-        public Programm Show()
+        public Models.AlphaProjectBudgetApp Show()
         {
+            Console.WriteLine("---------------------------");
             Console.WriteLine("Enter the Code: ");
             var code = Console.ReadLine();
 
@@ -28,13 +29,15 @@ namespace AlphaProjectBudgetApp.Views
                 Console.WriteLine("You did not enter the name of the program");
             }
 
+            Console.WriteLine("---------------------------");
             Console.WriteLine("Enter the Start Date: ");
             DateTime startDate = DateTime.Parse(Console.ReadLine());
-            
+
+            Console.WriteLine("---------------------------");
             Console.WriteLine("Enter the End Date: ");
             DateTime endDate = DateTime.Parse(Console.ReadLine());
 
-            Programm program = new Programm(code, name, startDate, endDate);
+            Models.AlphaProjectBudgetApp program = new Models.AlphaProjectBudgetApp(code, name, startDate, endDate);
 
             return program;
         }

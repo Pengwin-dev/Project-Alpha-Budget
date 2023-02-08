@@ -9,6 +9,6 @@ namespace AlphaProjectBudgetApp.Repository
 {
     public interface IProgramRepository
     {
-        void AddProgram(Programm program);
+        void AddProgram(Models.AlphaProjectBudgetApp program);
     }
 }

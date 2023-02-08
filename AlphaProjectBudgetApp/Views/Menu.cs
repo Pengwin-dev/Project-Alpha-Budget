@@ -23,7 +23,7 @@ namespace AlphaProjectBudgetApp.Views
             {
                 case "1":
                     ProgramRegistration UIProgramRegistration = new ProgramRegistration();
-                    Programm program = UIProgramRegistration.Show();
+                    Models.AlphaProjectBudgetApp program = UIProgramRegistration.Show();
                     ProgramController programController = new ProgramController();
                     programController.RegisterProgram(program);
                     break;

@@ -16,7 +16,7 @@ public class UnitTest1
         // Arrange
         DateTime firstDate = DateTime.Parse("08/05/2023");
         DateTime endDate = DateTime.Parse("26/05/2023");
-        Programm programToRegister = new Programm("Dev-v1", " ", firstDate, endDate);
+        AlphaProjectBudgetApp.Models.AlphaProjectBudgetApp programToRegister = new AlphaProjectBudgetApp.Models.AlphaProjectBudgetApp("Dev-v1", " ", firstDate, endDate);
         IProgramController programController = new ProgramController();
         // Act
         bool result = programController.RegisterProgram(programToRegister);

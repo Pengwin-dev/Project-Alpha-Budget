@@ -21,7 +21,7 @@ namespace AlphaProjectBudgetApp.Controllers
         }
         
             
-        public bool RegisterProgram(Programm programToRegister)
+        public bool RegisterProgram(Models.AlphaProjectBudgetApp programToRegister)
         {
             
             if (_dateValidator.ValidateOnMonday(programToRegister.StartDate) && _dateValidator.ValidateOnFriday(programToRegister.EndDate))
