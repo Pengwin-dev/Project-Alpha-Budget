@@ -16,26 +16,22 @@ namespace AlphaProjectBudgetApp.Controllers
 
         public ProgramController()
         {
+            _programRepository = new ProgramRepository();
+            _dateValidator = new AllValidator();
+        }
+        
             
-        }
-        public ProgramController(IProgramRepository programRepository, IDateValidator dateValidator)
+        public bool RegisterProgram(Programm programToRegister)
         {
-            _programRepository = programRepository;
-            _dateValidator = dateValidator;
-        }
-
-        public void RegisterProgram(Programm programToRegister)
-        {
-            try
+            
+            if (_dateValidator.ValidateOnMonday(programToRegister.StartDate) && _dateValidator.ValidateOnFriday(programToRegister.EndDate))
             {
-                if (_dateValidator.ValidateOnMonday(programToRegister.StartDate) && _dateValidator.ValidateOnFriday(programToRegister.EndDate))
-                {
-                    _programRepository.AddProgram(programToRegister);
-                }
+                _programRepository.AddProgram(programToRegister);
+                return true;
             }
-            catch (Exception e)
+            else
             {
-                Console.WriteLine(e.Message);
+                return false;
             }
         }
     }

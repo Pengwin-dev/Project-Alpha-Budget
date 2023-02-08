@@ -9,6 +9,6 @@ namespace AlphaProjectBudgetApp.Controllers
 {
     public interface IProgramController
     {
-        void RegisterProgram(Programm programToRegister);
+        bool RegisterProgram(Programm programToRegister);
     }
 }
