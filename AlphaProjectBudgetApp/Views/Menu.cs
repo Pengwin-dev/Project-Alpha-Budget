@@ -7,9 +7,9 @@ namespace AlphaProjectBudgetApp.Views
 {
     public class Menu
     {
-        IRegistrationUI<Programm> programRegistrator;
-        IController<Programm> programController;
-        IPrinter<Programm> programPrinter;
+        private IRegistrationUI<Programm> programRegistrator;
+        private IController<Programm> programController;
+        private IPrinter<Programm> programPrinter;
         public Menu(IController<Programm> programController, ProgramPrinter programPrinter)
         {
             this.programRegistrator = new ProgramRegistration();

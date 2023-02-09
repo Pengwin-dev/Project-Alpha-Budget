@@ -18,6 +18,7 @@ namespace AlphaProjectBudgetApp.Views
             {
                 Console.WriteLine($"\nCode:{item.Code}\n Name: {item.Name}\n Start Date: {item.StartDate}\n End Date: {item.EndDate} \n  Duration: {item.Duration}" );
             }
+            Console.WriteLine("\n");
         }
     }
 }
