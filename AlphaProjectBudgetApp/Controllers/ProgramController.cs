@@ -13,11 +13,11 @@ namespace AlphaProjectBudgetApp.Controllers
     {
         private IRepository<Programm> programRepository;
         private IDateValidator dateValidator;
-
-        public ProgramController()
+        public ProgramController() { }
+        public ProgramController(IRepository<Programm> programRepository, IDateValidator dateValidator)
         {
-            this.programRepository = new ProgramRepository();
-            this.dateValidator = new AllValidator();
+            this.programRepository = programRepository;
+            this.dateValidator = dateValidator;
         }
 
 

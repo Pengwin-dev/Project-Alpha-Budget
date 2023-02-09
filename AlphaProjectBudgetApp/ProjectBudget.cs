@@ -1,5 +1,7 @@
 ﻿using AlphaProjectBudgetApp.Controllers;
+using AlphaProjectBudgetApp.Models;
 using AlphaProjectBudgetApp.Repository;
+using AlphaProjectBudgetApp.Validator;
 using AlphaProjectBudgetApp.Views;
 using System;
 using System.Collections.Generic;
@@ -12,12 +14,17 @@ namespace AlphaProjectBudgetApp
     public class ProjectBudget
     {
         public Menu menu;
-        public ProgramController programControl = new ProgramController();
-        public ProgramRepository programRepository = new ProgramRepository();
-        public ProgramPrinter programPrinter = new ProgramPrinter();
-        public ProjectBudget() {
-            menu = new Menu(programControl,programPrinter);
+        public IRepository<Programm> programRepository;
+        public ProgramController programControl; 
+        public ProgramPrinter programPrinter;
+        public IDateValidator dateValidator;
         
+        public ProjectBudget() {
+            programRepository = new ProgramRepository();
+            dateValidator = new AllValidator();
+            programControl = new ProgramController(programRepository,dateValidator);
+            programPrinter = new ProgramPrinter();
+            menu = new Menu(programControl, programPrinter);
         }
     }
 }

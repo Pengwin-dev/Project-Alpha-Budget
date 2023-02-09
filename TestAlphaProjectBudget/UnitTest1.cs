@@ -2,6 +2,8 @@ using AlphaProjectBudgetApp;
 using AlphaProjectBudgetApp.Controllers;
 using AlphaProjectBudgetApp.Helpers;
 using AlphaProjectBudgetApp.Models;
+using AlphaProjectBudgetApp.Repository;
+using AlphaProjectBudgetApp.Validator;
 using Microsoft.VisualStudio.TestPlatform.TestHost;
 
 
@@ -12,15 +14,16 @@ namespace TestAlphaProjectBudgetl;
 public class UnitTest1
 {
     [TestMethod]
-    public void TestRegisterProgramReturnBool()
+    public void TestWhenProgrammIsAddedToRepositoryReturnBool()
     {
         // Arrange
         DateTime startDate = DateTime.Parse("05/08/2023");
         DateTime endDate = DateTime.Parse("05/26/2023");
 
         Programm program = new Programm("Test", "" , startDate, endDate,3);
-        
-        ProgramController programController = new ProgramController();
+        IRepository<Programm> programRepository = new ProgramRepository();
+        IDateValidator dateValidator = new AllValidator();
+        ProgramController programController = new ProgramController(programRepository, dateValidator);
         
         // Act
         bool result = programController.AddToRepository(program);
@@ -36,7 +39,9 @@ public class UnitTest1
         DateTime endDate = DateTime.Parse("05/26/2023");
         Programm program = new Programm("Test", "", startDate, endDate,3);
 
-        ProgramController programController = new ProgramController();
+        IRepository<Programm> programRepository = new ProgramRepository();
+        IDateValidator dateValidator = new AllValidator();
+        ProgramController programController = new ProgramController(programRepository, dateValidator);
 
         // Act
         bool result = programController.AddToRepository(program);
@@ -52,7 +57,9 @@ public class UnitTest1
         DateTime endDate = DateTime.Parse("05/21/2023"); //Monday
         Programm program = new Programm("Test", "", startDate, endDate, 3);
 
-        ProgramController programController = new ProgramController();
+        IRepository<Programm> programRepository = new ProgramRepository();
+        IDateValidator dateValidator = new AllValidator();
+        ProgramController programController = new ProgramController(programRepository, dateValidator);
 
         // Act
         bool result = programController.AddToRepository(program);
@@ -74,14 +81,6 @@ public class UnitTest1
         Assert.AreEqual(result, 52);
     }
 
-    [TestMethod]
-    public void TestProgramIsSavedAtRegistration()
-    {
-        // Arrange
-        
-        // Act
-        // Assert
-        
-    }
+   
 
 }

@@ -7,12 +7,12 @@ namespace AlphaProjectBudgetApp.Views
 {
     public class Menu
     {
-        IRegistrationUI<Programm> uIProgramRegistration;
+        IRegistrationUI<Programm> programRegistrator;
         IController<Programm> programController;
         IPrinter<Programm> programPrinter;
         public Menu(IController<Programm> programController, ProgramPrinter programPrinter)
         {
-            this.uIProgramRegistration = new ProgramRegistration();
+            this.programRegistrator = new ProgramRegistration();
             this.programController = programController;
             this.programPrinter = programPrinter;
         }
@@ -31,7 +31,7 @@ namespace AlphaProjectBudgetApp.Views
                 {
                     case "1":
 
-                        Programm program = uIProgramRegistration.Register();
+                        Programm program = programRegistrator.Register();
 
                         programController.AddToRepository(program);
                         break;
