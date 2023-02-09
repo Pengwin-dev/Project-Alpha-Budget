@@ -1,5 +1,6 @@
 using AlphaProjectBudgetApp;
 using AlphaProjectBudgetApp.Controllers;
+using AlphaProjectBudgetApp.Helpers;
 using AlphaProjectBudgetApp.Models;
 using Microsoft.VisualStudio.TestPlatform.TestHost;
 
@@ -14,9 +15,10 @@ public class UnitTest1
     public void TestRegisterProgramReturnBool()
     {
         // Arrange
-        DateTime firstDate = DateTime.Parse("05/08/2023");
+        DateTime startDate = DateTime.Parse("05/08/2023");
         DateTime endDate = DateTime.Parse("05/26/2023");
-        Programm program = new Programm("Test", "" ,firstDate, endDate);
+
+        Programm program = new Programm("Test", "" , startDate, endDate,3);
         
         ProgramController programController = new ProgramController();
         
@@ -27,12 +29,12 @@ public class UnitTest1
     }
 
     [TestMethod]
-    public void TestRegisterProgramReturnFalse()
+    public void TestIfStartDateIsntOnMondayRegisterProgramReturnFalse()
     {
         // Arrange
-        DateTime firstDate = DateTime.Parse("05/10/2023");
-        DateTime endDate = DateTime.Parse("05/28/2023");
-        Programm program = new Programm("Test", "", firstDate, endDate);
+        DateTime startDate = DateTime.Parse("05/10/2023"); //Wednseday
+        DateTime endDate = DateTime.Parse("05/26/2023");
+        Programm program = new Programm("Test", "", startDate, endDate,3);
 
         ProgramController programController = new ProgramController();
 
@@ -40,6 +42,36 @@ public class UnitTest1
         bool result = programController.AddToRepository(program);
         // Assert
         Assert.IsFalse(result);
+    }
+
+    [TestMethod]
+    public void TestIfEndDateIsntOnFridayRegisterProgramReturnFalse()
+    {
+        // Arrange
+        DateTime startDate = DateTime.Parse("05/10/2023"); 
+        DateTime endDate = DateTime.Parse("05/21/2023"); //Monday
+        Programm program = new Programm("Test", "", startDate, endDate, 3);
+
+        ProgramController programController = new ProgramController();
+
+        // Act
+        bool result = programController.AddToRepository(program);
+        // Assert
+        Assert.IsFalse(result);
+    }
+    [TestMethod]
+    public void TestWeekCalculatorReturnsCorrectData()
+    {
+        // Arrange
+        DateTime startDate = DateTime.Parse("01/01/2023");
+        DateTime endDate = DateTime.Parse("12/31/2023");
+        WeekCalculator weekCalculator = new WeekCalculator();
+
+
+        // Act
+        int result = weekCalculator.calculateWeeks(startDate,endDate);
+        // Assert
+        Assert.AreEqual(result, 52);
     }
 
 }

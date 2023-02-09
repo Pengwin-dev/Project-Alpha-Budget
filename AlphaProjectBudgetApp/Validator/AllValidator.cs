@@ -10,27 +10,24 @@ namespace AlphaProjectBudgetApp.Validator
     {
         public bool ValidateOnFriday(DateTime enddate)
         {
+            bool result = false;
             if (enddate.DayOfWeek == DayOfWeek.Friday)
             {
-                return true;
+                result = true;
             }
-            else
-            {
-                return false;
-            }
+                return result;
+            
         }
 
         public bool ValidateOnMonday(DateTime startdate)
         {
 
+            bool result = false;
             if (startdate.DayOfWeek == DayOfWeek.Monday)
             {
-                return true;
+                result = true;
             }
-            else
-            {
-                return false;
-            }
+            return result;
         }
     }
 }
