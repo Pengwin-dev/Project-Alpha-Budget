@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace AlphaProjectBudgetApp.Controllers
 {
-    public interface IProgramController
+    public interface IController<T>
     {
-        bool RegisterProgram(Models.Programm programToRegister);
+        bool AddToRepository(T toRegister);
+        List<T> GetFromRepository();
     }
 }

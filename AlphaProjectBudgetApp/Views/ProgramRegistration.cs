@@ -1,4 +1,5 @@
-﻿using AlphaProjectBudgetApp.Models;
+﻿using AlphaProjectBudgetApp.Helpers;
+using AlphaProjectBudgetApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,16 @@ using System.Threading.Tasks;
 
 namespace AlphaProjectBudgetApp.Views
 {
-    public class ProgramRegistration
+    public class ProgramRegistration: IRegistrationUI<Programm>
     {
-        public Models.Programm Show()
+        public IWeekCalculator weekCalculator;
+
+        public ProgramRegistration()
+        {
+            weekCalculator = new WeekCalculator();
+        }
+
+        public Programm Register()
         {
             Console.WriteLine("---------------------------");
             Console.WriteLine("Enter the Code: ");
@@ -36,10 +44,12 @@ namespace AlphaProjectBudgetApp.Views
             Console.WriteLine("---------------------------");
             Console.WriteLine("Enter the End Date: ");
             DateTime endDate = DateTime.Parse(Console.ReadLine());
-
-            Models.Programm program = new Models.Programm(code, name, startDate, endDate);
-
+            int duration = weekCalculator.calculateWeeks(startDate, endDate);
+            Programm program = new Programm(code, name, startDate, endDate,duration);
+            
             return program;
         }
+
+        
     }
 }

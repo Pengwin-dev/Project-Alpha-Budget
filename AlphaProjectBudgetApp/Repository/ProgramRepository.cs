@@ -7,13 +7,18 @@ using System.Threading.Tasks;
 
 namespace AlphaProjectBudgetApp.Repository
 {
-    public class ProgramRepository : IProgramRepository
+    public class ProgramRepository : IRepository<Programm>
     {
-        List<Models.Programm> programs = new List<Models.Programm>();
+        private List<Programm> programs = new List<Programm>();
 
-        public void AddProgram(Models.Programm program)
+        public void Add(Programm program)
         {
             programs.Add(program);
+        }
+
+        public List<Programm> GetList()
+        {
+            return programs;
         }
     }
 }

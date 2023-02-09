@@ -9,30 +9,32 @@ using System.Threading.Tasks;
 
 namespace AlphaProjectBudgetApp.Controllers
 {
-    public class ProgramController : IProgramController
+    public class ProgramController : IController<Programm>
     {
-        private IProgramRepository _programRepository;
-        private IDateValidator _dateValidator;
+        private IRepository<Programm> programRepository;
+        private IDateValidator dateValidator;
 
         public ProgramController()
         {
-            _programRepository = new ProgramRepository();
-            _dateValidator = new AllValidator();
+            this.programRepository = new ProgramRepository();
+            this.dateValidator = new AllValidator();
         }
-        
-            
-        public bool RegisterProgram(Models.Programm programToRegister)
+
+
+        public bool AddToRepository(Programm programToAdd)
         {
-            
-            if (_dateValidator.ValidateOnMonday(programToRegister.StartDate) && _dateValidator.ValidateOnFriday(programToRegister.EndDate))
+            bool added = false;
+            if (dateValidator.ValidateOnMonday(programToAdd.StartDate) && dateValidator.ValidateOnFriday(programToAdd.EndDate))
             {
-                _programRepository.AddProgram(programToRegister);
-                return true;
+                programRepository.Add(programToAdd);
+                added = true;
+
             }
-            else
-            {
-                return false;
-            }
+            return added;
+        }
+
+        public List<Programm> GetFromRepository(){
+            return programRepository.GetList();
         }
     }
 }

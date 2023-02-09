@@ -12,13 +12,15 @@ namespace AlphaProjectBudgetApp.Models
         public string Name { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public int Duration { get; set; }
       
-        public Programm(string code, string name, DateTime startDate, DateTime endDate)
+        public Programm(string code, string name, DateTime startDate, DateTime endDate, int duration)
         {
             this.Code = code;
             this.Name = name;
             this.StartDate = startDate;
             this.EndDate = endDate;
+            this.Duration = duration;
         }
         public Programm(string code, DateTime startDate, DateTime endDate)
         {

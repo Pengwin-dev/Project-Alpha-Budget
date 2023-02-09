@@ -1,36 +1,49 @@
 ﻿using AlphaProjectBudgetApp.Controllers;
 using AlphaProjectBudgetApp.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 
 namespace AlphaProjectBudgetApp.Views
 {
     public class Menu
     {
-        public void Show()
+        IRegistrationUI<Programm> uIProgramRegistration;
+        IController<Programm> programController;
+        IPrinter<Programm> programPrinter;
+        public Menu(IController<Programm> programController, ProgramPrinter programPrinter)
         {
-            
-            Console.WriteLine("Welcome to the Budget App");
-            Console.WriteLine("1. Register a new Program");
-
-            var input = Console.ReadLine();
-
-            switch (input)
+            this.uIProgramRegistration = new ProgramRegistration();
+            this.programController = programController;
+            this.programPrinter = programPrinter;
+        }
+        ///---------Menu.Show()--------\\\
+        public void ShowMenu()
+        {
+            do
             {
-                case "1":
-                    ProgramRegistration UIProgramRegistration = new ProgramRegistration();
-                    Models.Programm program = UIProgramRegistration.Show();
-                    ProgramController programController = new ProgramController();
-                    programController.RegisterProgram(program);
-                    break;
-                default:
-                    Console.WriteLine("Invalid input");
-                    break;
-            }
+                Console.WriteLine("Welcome to the Budget App");
+                Console.WriteLine("1. Register a new Program");
+                Console.WriteLine("2. List all Programs");
+
+                var input = Console.ReadLine();
+
+                switch (input)
+                {
+                    case "1":
+
+                        Programm program = uIProgramRegistration.Register();
+
+                        programController.AddToRepository(program);
+                        break;
+                    case "2":
+                        List<Programm> listOfPrograms = programController.GetFromRepository();
+                        programPrinter.Print(listOfPrograms);
+                        break;
+                    default:
+                        Console.WriteLine("Invalid input");
+                        break;
+                }
+            } while (true);
         }
         
     }
