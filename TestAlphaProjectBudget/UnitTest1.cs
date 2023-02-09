@@ -74,4 +74,14 @@ public class UnitTest1
         Assert.AreEqual(result, 52);
     }
 
+    [TestMethod]
+    public void TestProgramIsSavedAtRegistration()
+    {
+        // Arrange
+        
+        // Act
+        // Assert
+        
+    }
+
 }
